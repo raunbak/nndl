@@ -31,14 +31,31 @@ class NeuronBase(ABC):
         def func_prime(self, z):
             return self.func(z)*(1-self.func(z))
 
+    Attributes:
     """
 
     @abstractmethod
     def func(self, z: np.ndarray) -> np.ndarray:
+        """Activation function implementation.
+
+        Args:
+            z: weighted input.
+
+        Returns:
+            A numpy array of output from the neuron.
+        """
         pass
 
     @abstractmethod
     def func_prime(self, z: np.ndarray) -> np.ndarray:
+        """The prime of the activation function implementation.
+
+        Args:
+            z: weighted input.
+
+        Returns:
+            A numpy array of the prime of the output of this neuron.
+        """
         pass
 
 
