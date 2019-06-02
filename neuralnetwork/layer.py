@@ -31,13 +31,17 @@ class Layer(object):
         neuron_type: A NeuronBase subclass object,
             defines which activation function is used in the layer.
     """
+
     def __init__(self, size: int, neuron_type: NeuronBase):
         """Inits a Layer with a number of neurons and a neuron type.
 
+        Args:
+
+        Raises:
         """
 
-        if not isinstance(neuron_type, NeuronBase):
-            raise TypeError("Neuron needs to subclass NeuronBase")
+        # if not isinstance(neuron_type, NeuronBase):
+        #     raise TypeError("Neuron needs to subclass NeuronBase")
 
         if size < 1:
             raise ValueError("Layer size must be positive")

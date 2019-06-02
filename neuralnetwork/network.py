@@ -10,7 +10,7 @@ At the moment it also is able to preform the learning operation and
 holds the cost_function - this will be changed later.
 """
 # Standart library imports
-from typing import Tuple, List
+from typing import Tuple
 
 # Third party imports
 import numpy as np
@@ -63,7 +63,7 @@ class Network(object):
             # Random uniform init of weights for now
             self.weights.append(np.random.randn(right_layer_size, left_layer_size))
 
-    def feedforward(self, a: np.ndarray) -> Tuple(List[np.ndarray], List[np.ndarray]):
+    def feedforward(self, a: np.ndarray) -> Tuple:
         """Feed an input a forward through the network.
 
         Feedforward the network using the input a 
