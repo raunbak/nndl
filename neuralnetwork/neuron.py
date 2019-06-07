@@ -78,7 +78,7 @@ class ReLU(NeuronBase):
     """Neuron using ReLU (retified linear unit)
     
     Note the prime (f'(x)) of ReLU is undefined at x=0,
-    Tensorflow appear to use f'(0) = 0, as will it here. 
+    Tensorflow appearers to use f'(0) = 0, so that will be the choice here.
 
     To use:
     relu = ReLU()
@@ -90,3 +90,49 @@ class ReLU(NeuronBase):
 
     def func_prime(self, z: np.ndarray) -> np.ndarray:
         return (z > 0).astype(z.dtype)
+
+
+class LeakyReLU(NeuronBase):
+    """Neuron using Leaky ReLU 
+
+    Note the prime (f'(x)) of LeakyReLU is undefined at x=0
+    Tensorflow appearers to use f'(0) = 0, so that will be the choice here.
+    """
+
+    def __init__(self, epsilon: float = 0.01):
+        self.epsilon = epsilon
+
+    def func(self, z: np.ndarray) -> np.ndarray:
+        return np.fmax(self.epsilon * z, z)
+
+    def func_prime(self, z: np.ndarray) -> np.ndarray:
+        leaky_Relu = (z > 0).astype(z.dtype)
+        leaky_Relu[leaky_Relu == 0] = self.epsilon
+        return leaky_Relu
+
+
+class Tanh(NeuronBase):
+    """Neuron using tanh function
+
+    """
+
+    def func(self, z: np.ndarray) -> np.ndarray:
+        return np.tanh(z)
+
+    def func_prime(self, z: np.ndarray) -> np.ndarray:
+        tanh = np.tanh(z)
+        return 1.0 - (tanh * tanh)
+
+
+# class Softmax(NeuronBase):
+#     """Neuron using softmax function
+
+
+#     """
+
+#     def func(self, z: np.ndarray) -> np.ndarray:
+#         return np.exp(z) / np.sum(np.exp(z), axis=1, keepdims=True)
+
+#     def func_prime(self, z: np.ndarray) -> np.ndarray:
+#         return
+
